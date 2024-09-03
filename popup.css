@@ -1,0 +1,200 @@
+body {
+    width: 400px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+.date-selection {
+    text-align: center;
+
+}
+.settings-btn {
+    border: none;
+    background-color: #fff;
+    color: #000000;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+.textcolor {
+    color: #000000;
+}
+
+.mainHeader {
+    size: 50px;
+    text-align: center;
+    color: #000000;
+}
+
+.items {
+    color: #fff;
+    font-size: 17px;
+    margin-bottom: 10px; /* Optional: adds space between list items */
+    max-width: 270px;
+    word-wrap: break-word; /* Ensures that long words will wrap and not overflow */
+
+}   
+hr.solid {
+    border-top: 3px solid #000000;
+}
+
+.delete-btn {
+    position: absolute;
+    border: none;
+    background: none;
+    margin-left: 40px;
+    cursor: pointer; /* Changes cursor to pointer when hovering over the button */
+    right: 10px;
+}
+
+
+.completed-btn {
+    position: absolute;
+    right: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block; /* or inline-block as per your layout needs */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#settings-panel {
+    position: fixed; /* Or absolute, depending on layout */
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000; /* Ensure it's above other content */
+    display: none; /* Hide it by default */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    border: none;
+
+}
+
+.complete-icon {
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.plus-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+#inputelementdisplay-Monday {
+    display: none;
+}
+#inputelementdisplay-Tuesday {
+    display: none;
+}
+#inputelementdisplay-Wednesday {
+    display: none;
+}
+#inputelementdisplay-Thursday {
+    display: none;
+}
+#inputelementdisplay-Friday {
+    display: none;
+}
+#inputelementdisplay-Saturday {
+    display: none;
+}
+#inputelementdisplay-Sunday {
+    display: none;
+}
+
+#weekViewer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+#prevWeek, #nextWeek {
+    padding: 5px 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 8px;
+}
+.date-box {
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px;
+    margin: 10px;
+    margin: auto;
+}
+#currentWeek {
+    font-size: 17px;
+    margin: 0 10px;
+}
+
+#weekRange {
+    font-size: 15px;
+    color: #666666;
+}
+#Monday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Tuesday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Wednesday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Thursday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Friday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Saturday-box {
+    background: none;
+    border: none;
+    position: none;
+}
+#Sunday-box {
+    background: none;
+    border: none;
+    position: none;
+}

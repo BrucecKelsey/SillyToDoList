@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Task Manager</title>
+</head>
+<body>
+    <div id="weekViewer">
+        <button id="prevWeek">Previous Week</button>
+        <span id="currentWeek"></span> - <span id="weekRange"></span>
+        <button id="nextWeek">Next Week</button>
+    </div>
+    <div id="taskList"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentWeekSpan = document.getElementById('currentWeek');
+            const weekRangeSpan = document.getElementById('weekRange');
+            const taskListDiv = document.getElementById('taskList');
+            let currentDate = new Date();  
+
+            function updateDisplay() {
+                const weekRange = getWeekRange(currentDate);
+                currentWeekSpan.textContent = `Week ${getWeekNumber(currentDate)}, ${currentDate.getFullYear()}`;
+                weekRangeSpan.textContent = `${formatDate(weekRange.start)} - ${formatDate(weekRange.end)}`;
+                loadTasksForWeek(weekRange);
+            }
+
+            function formatDate(date) {
+                return date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
+            }
+
+            function getWeekNumber(d) {
+                d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+                d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+                const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+                return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+            }
+
+            function getWeekRange(date) {
+                const start = new Date(date);
+                start.setDate(start.getDate() - start.getDay() + 1);
+                const end = new Date(start);
+                end.setDate(end.getDate() + 6);
+                return { start, end };
+            }
+
+            function loadTasksForWeek(weekRange) {
+                taskListDiv.innerHTML = '';
+                let day = new Date(weekRange.start);
+                while (day <= weekRange.end) {
+                    const dayKey = formatDate(day);
+                    chrome.storage.sync.get(dayKey, function(result) {
+                        if (result[dayKey]) {
+                            result[dayKey].forEach(task => {
+                                const taskItem = document.createElement('div');
+                                taskItem.textContent = `${formatDate(day)}: ${task}`;
+                                taskListDiv.appendChild(taskItem);
+                            });
+                        }
+                    });
+                    day.setDate(day.getDate() + 1);
+                }
+            }
+
+            document.getElementById('prevWeek').addEventListener('click', () => {
+                currentDate.setDate(currentDate.getDate() - 7);
+                updateDisplay();
+            });
+
+            document.getElementById('nextWeek').addEventListener('click', () => {
+                currentDate.setDate(currentDate.getDate() + 7);
+                updateDisplay();
+            });
+
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>
